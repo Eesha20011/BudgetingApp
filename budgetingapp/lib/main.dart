@@ -7,8 +7,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,11 +25,397 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  int five = 5;
+  int ten = 10;
+  int twenty = 20;
+  int fifty = 50;
+  int hundred = 100;
 
-  void _incrementCounter() {
+  void _incrementCounter(int amount) {
     setState(() {
-      _counter++;
+      _counter = _counter + amount;
     });
+  }
+
+ void _decrementCounter(int amount) {
+    setState(() {
+      _counter = _counter - amount;
+    });
+  }
+
+
+
+  Widget _buildPopupDialog(BuildContext context) {
+    return AlertDialog(
+      title: const Text('Add Funds to your wallet'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    _incrementCounter(five);
+                  },
+                  child: Container(
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: Colors.orange,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          blurRadius: 4,
+                          offset: const Offset(5, 8), // Shadow position
+                        ),
+                      ],
+                    ),
+                    child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "$five",
+                          style: GoogleFonts.roboto(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 25),
+                        )),
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    _incrementCounter(ten);
+                  },
+                  child: Container(
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: Colors.pink,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          blurRadius: 4,
+                          offset: const Offset(5, 8), // Shadow position
+                        ),
+                      ],
+                    ),
+                    child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "$ten",
+                          style: GoogleFonts.roboto(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 25),
+                        )),
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    _incrementCounter(twenty);
+                  },
+                  child: Container(
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          blurRadius: 4,
+                          offset: const Offset(5, 8), // Shadow position
+                        ),
+                      ],
+                    ),
+                    child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "$twenty",
+                          style: GoogleFonts.roboto(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 25),
+                        )),
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    _incrementCounter(fifty);
+                  },
+                  child: Container(
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: Colors.purple,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          blurRadius: 4,
+                          offset: const Offset(5, 8), // Shadow position
+                        ),
+                      ],
+                    ),
+                    child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "$fifty",
+                          style: GoogleFonts.roboto(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 25),
+                        )),
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                GestureDetector(
+                    onTap: () {
+                      _incrementCounter(hundred);
+                    },
+                    child: Container(
+                      width: 60,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: Colors.yellow,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            blurRadius: 4,
+                            offset: const Offset(5, 8), // Shadow position
+                          ),
+                        ],
+                      ),
+                      child: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "$hundred",
+                            style: GoogleFonts.roboto(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontSize: 25),
+                          )),
+                    )),
+              ],
+            ),
+          )
+        ],
+      ),
+      actions: <Widget>[
+        FloatingActionButton(
+          backgroundColor: Colors.red,
+          child: const Icon(
+            Icons.block,
+          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ],
+    );
+  }
+
+
+Widget _buildPopupDialogExpense(BuildContext context, String TitleOfPopup) {
+    return AlertDialog(
+      title: Text(TitleOfPopup),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    _decrementCounter(five);
+                  },
+                  child: Container(
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: Colors.orange,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          blurRadius: 4,
+                          offset: const Offset(5, 8), // Shadow position
+                        ),
+                      ],
+                    ),
+                    child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "$five",
+                          style: GoogleFonts.roboto(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 25),
+                        )),
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    _decrementCounter(ten);
+                  },
+                  child: Container(
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: Colors.pink,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          blurRadius: 4,
+                          offset: const Offset(5, 8), // Shadow position
+                        ),
+                      ],
+                    ),
+                    child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "$ten",
+                          style: GoogleFonts.roboto(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 25),
+                        )),
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    _decrementCounter(twenty);
+                  },
+                  child: Container(
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          blurRadius: 4,
+                          offset: const Offset(5, 8), // Shadow position
+                        ),
+                      ],
+                    ),
+                    child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "$twenty",
+                          style: GoogleFonts.roboto(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 25),
+                        )),
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    _decrementCounter(fifty);
+                  },
+                  child: Container(
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: Colors.purple,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          blurRadius: 4,
+                          offset: const Offset(5, 8), // Shadow position
+                        ),
+                      ],
+                    ),
+                    child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "$fifty",
+                          style: GoogleFonts.roboto(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 25),
+                        )),
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                GestureDetector(
+                    onTap: () {
+                      _decrementCounter(hundred);
+                    },
+                    child: Container(
+                      width: 60,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: Colors.yellow,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            blurRadius: 4,
+                            offset: const Offset(5, 8), // Shadow position
+                          ),
+                        ],
+                      ),
+                      child: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "$hundred",
+                            style: GoogleFonts.roboto(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontSize: 25),
+                          )),
+                    )),
+              ],
+            ),
+          )
+        ],
+      ),
+      actions: <Widget>[
+        FloatingActionButton(
+          backgroundColor: Colors.red,
+          child: const Icon(
+            Icons.block,
+          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ],
+    );
   }
 
   @override
@@ -88,7 +472,12 @@ class _MyHomePageState extends State<MyHomePage> {
           child: const Icon(
             Icons.add,
           ),
-          onPressed: () {}),
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) => _buildPopupDialog(context),
+            );
+          }),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: Center(
         child: Column(
@@ -144,7 +533,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                     Text(
-                      "10.275",
+                      "$_counter",
                       style: GoogleFonts.roboto(
                           fontWeight: FontWeight.bold,
                           color: Colors.lightBlue,
@@ -186,6 +575,14 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 15,
             ),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+               GestureDetector(
+                    onTap: ()  {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) => _buildPopupDialogExpense(context, "Electricity bill"),
+            );
+          },
+           child:
               Container(
                   width: 60,
                   height: 60,
@@ -204,10 +601,18 @@ class _MyHomePageState extends State<MyHomePage> {
                     Icons.emoji_objects_outlined,
                     size: 30,
                     color: Colors.white,
-                  )),
+                  )),),
               const SizedBox(
                 width: 15,
               ),
+               GestureDetector(
+                    onTap: ()  {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) => _buildPopupDialogExpense(context, "Cofee cost"),
+            );
+          },
+           child:
               Container(
                   width: 60,
                   height: 60,
@@ -226,11 +631,19 @@ class _MyHomePageState extends State<MyHomePage> {
                     Icons.emoji_food_beverage_sharp,
                     size: 30,
                     color: Colors.white,
-                  )),
+                  )),),
               const SizedBox(
                 width: 15,
               ),
-              Container(
+            
+GestureDetector(
+                    onTap: ()  {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) => _buildPopupDialogExpense(context, "House rent"),
+            );
+          },
+              child: Container(
                   width: 60,
                   height: 60,
                   decoration: BoxDecoration(
@@ -248,10 +661,19 @@ class _MyHomePageState extends State<MyHomePage> {
                     Icons.house_rounded,
                     size: 30,
                     color: Colors.white,
-                  )),
+                  )),),
               const SizedBox(
                 width: 15,
               ),
+
+              GestureDetector(
+                    onTap: ()  {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) => _buildPopupDialogExpense(context, "Food cost"),
+            );
+          },
+              child:
               Container(
                   width: 60,
                   height: 60,
@@ -270,7 +692,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Icons.flatware_outlined,
                     size: 30,
                     color: Colors.white,
-                  ))
+                  )))
             ]),
             const SizedBox(
               height: 20,
@@ -447,12 +869,19 @@ class _MyHomePageState extends State<MyHomePage> {
                             const SizedBox(
                               height: 10,
                             ),
-                            Text(
-                              "💸 Saving tips",
-                              style: GoogleFonts.roboto(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                  fontSize: 20),
+                            Row(
+                              children: [
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  "💸 Saving Tips",
+                                  style: GoogleFonts.roboto(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                      fontSize: 20),
+                                ),
+                              ],
                             ),
                             Stack(
                               alignment: Alignment.center,
