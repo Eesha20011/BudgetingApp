@@ -437,7 +437,7 @@ Widget _buildPopupDialogExpense(BuildContext context, String TitleOfPopup) {
           children: [
             const Spacer(),
             IconButton(
-                icon: const Icon(Icons.account_circle, size: 32),
+                icon: const Icon(Icons.account_circle, size: 32, color: Colors.lightBlue,),
                 onPressed: () {}),
             const SizedBox(
               width: 200,
@@ -446,6 +446,7 @@ Widget _buildPopupDialogExpense(BuildContext context, String TitleOfPopup) {
                 icon: const Icon(
                   Icons.bar_chart_outlined,
                   size: 32,
+                  color: Colors.lightBlue
                 ),
                 onPressed: () {}),
             const Spacer(),
@@ -453,7 +454,7 @@ Widget _buildPopupDialogExpense(BuildContext context, String TitleOfPopup) {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.lightBlue,
+          backgroundColor: Colors.black,
           child: const Icon(
             Icons.add,
           ),
@@ -691,8 +692,11 @@ GestureDetector(
                     width: 180,
                     height: 300,
                     decoration: BoxDecoration(
-                      color: Colors.white,
                       borderRadius: BorderRadius.circular(10),
+                      gradient: LinearGradient(
+                     colors: [Colors.lightBlue, Colors.black],
+                     begin: Alignment.topCenter,
+                       end: Alignment.bottomCenter),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey.withOpacity(0.5),
@@ -714,7 +718,7 @@ GestureDetector(
                             const Icon(
                               Icons.auto_graph,
                               size: 30,
-                              color: Colors.black,
+                              color: Colors.white,
                             ),
                             const SizedBox(
                               width: 10,
@@ -723,7 +727,7 @@ GestureDetector(
                               "Done",
                               style: GoogleFonts.roboto(
                                   fontWeight: FontWeight.normal,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                   fontSize: 20),
                             ),
                           ],
@@ -735,7 +739,7 @@ GestureDetector(
                           "12",
                           style: GoogleFonts.roboto(
                               fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                              color: Colors.white,
                               fontSize: 80),
                         ),
                         const SizedBox(
@@ -746,7 +750,7 @@ GestureDetector(
                           textAlign: TextAlign.center,
                           style: GoogleFonts.roboto(
                             fontWeight: FontWeight.normal,
-                            color: Colors.grey,
+                            color: Colors.white,
                             fontSize: 20,
                           ),
                         ),
