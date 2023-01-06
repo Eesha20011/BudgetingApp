@@ -1,3 +1,4 @@
+import 'package:budgetingapp/widgets/TransactionListItem.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -8,6 +9,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final List<Widget> transactions = [TransactionItem(), TransactionItem()];
   int _counter = 0;
   int five = 5;
   int ten = 10;
@@ -26,6 +28,8 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter = _counter - amount;
     });
   }
+
+  
 
 
 
@@ -552,7 +556,7 @@ Widget _buildPopupDialogExpense(BuildContext context, String TitleOfPopup) {
                     style: GoogleFonts.roboto(
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
-                        fontSize: 25),
+                        fontSize: 20),
                   ),
                 ),
               ],
@@ -689,14 +693,11 @@ GestureDetector(
                   width: 20,
                 ),
                 Container(
-                    width: 180,
+                    width: 350,
                     height: 300,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      gradient: LinearGradient(
-                     colors: [Colors.lightBlue, Colors.black],
-                     begin: Alignment.topCenter,
-                       end: Alignment.bottomCenter),
+                     color: Colors.white,
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey.withOpacity(0.5),
@@ -718,186 +719,38 @@ GestureDetector(
                             const Icon(
                               Icons.auto_graph,
                               size: 30,
-                              color: Colors.white,
+                              color: Colors.black,
                             ),
                             const SizedBox(
                               width: 10,
                             ),
                             Text(
-                              "Done",
+                              "Your Transactions",
                               style: GoogleFonts.roboto(
                                   fontWeight: FontWeight.normal,
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontSize: 20),
                             ),
                           ],
                         ),
                         const SizedBox(
-                          height: 45,
+                          height: 10,
                         ),
-                        Text(
-                          "12",
-                          style: GoogleFonts.roboto(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              fontSize: 80),
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          "Completed saving goals",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.roboto(
-                            fontWeight: FontWeight.normal,
-                            color: Colors.white,
-                            fontSize: 20,
-                          ),
-                        ),
+                       
+          Expanded(
+                   child:  ListView(
+                    children: [
+                    TransactionItem(),
+                    SizedBox(height: 10,),
+                    TransactionItem(),
+                    SizedBox(height: 10,),
+                    TransactionItem(),
+                    ],),)
+                   
                       ],
                     )),
-                const SizedBox(
-                  width: 10,
-                ),
-                Column(
-                  children: [
-                    Container(
-                        width: 170,
-                        height: 150,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              blurRadius: 4,
-                              offset: const Offset(5, 8), // Shadow position
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          children: [
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              children: [
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                const Icon(
-                                  Icons.add_chart,
-                                  size: 30,
-                                  color: Colors.black,
-                                ),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Text(
-                                  "Saving Goal",
-                                  style: GoogleFonts.roboto(
-                                      fontWeight: FontWeight.normal,
-                                      color: Colors.black,
-                                      fontSize: 20),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 17,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "2",
-                                  style: GoogleFonts.roboto(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                      fontSize: 30),
-                                ),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Text(
-                                  "goals",
-                                  style: GoogleFonts.roboto(
-                                      fontWeight: FontWeight.normal,
-                                      color: Colors.grey,
-                                      fontSize: 30),
-                                ),
-                              ],
-                            ),
-                            Text(
-                              "in progress",
-                              style: GoogleFonts.roboto(
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.lightBlue,
-                                  fontSize: 15),
-                            ),
-                          ],
-                        )),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                        width: 170,
-                        height: 150,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              blurRadius: 4,
-                              offset: const Offset(5, 8), // Shadow position
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          children: [
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              children: [
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Text(
-                                  "💸 Saving Tips",
-                                  style: GoogleFonts.roboto(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                      fontSize: 20),
-                                ),
-                              ],
-                            ),
-                            Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                Row(
-                                  children: const [
-                                    SizedBox(
-                                      width: 90,
-                                    ),
-                                    Icon(
-                                      Icons.attach_money,
-                                      size: 60,
-                                      color: Colors.green,
-                                    ),
-                                  ],
-                                ),
-                                Icon(
-                                  Icons.ballot_outlined,
-                                  size: 90,
-                                  color: Colors.lightBlue.withOpacity(0.50),
-                                )
-                              ],
-                            )
-                          ],
-                        )),
-                  ],
-                )
+            
+              
               ],
             ),
             const Spacer()
