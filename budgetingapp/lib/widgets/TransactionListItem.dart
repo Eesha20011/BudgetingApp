@@ -4,8 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 class TransactionItem extends StatelessWidget {
   final Color color;
   final String text;
+  final Icon icon2;
 
-  const TransactionItem({super.key, required this.color, required this.text});
+  const TransactionItem({super.key, required this.color, required this.text, required this.icon2});
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +29,7 @@ class TransactionItem extends StatelessWidget {
             const SizedBox(
               width: 10,
             ),
-            const Icon(
-              Icons.emoji_objects_outlined,
-              size: 30,
-              color: Colors.white,
-            ),
+            icon2,
             const SizedBox(
               width: 10,
             ),

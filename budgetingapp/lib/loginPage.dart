@@ -92,12 +92,13 @@ class _LoginScreenState extends State<LoginScreen> {
                             });
                           },
                           child: Text(
-                            'Name',
+                            'Start',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: constraints.maxHeight * 0.03,
                                 fontWeight: FontWeight.bold),
-                          ))),
+                          ))
+                          ),
                   SizedBox(
                     height: constraints.maxHeight * 0.15,
                   ),

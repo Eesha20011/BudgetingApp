@@ -2,16 +2,16 @@ import 'package:budgetingapp/widgets/TransactionListItem.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class MyHomePage extends StatefulWidget {
   final String name;
-  
+
   const MyHomePage({super.key, required this.name});
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  TextEditingController textController = TextEditingController();
   final List<Widget> transactions = [];
   int _counter = 0;
   int five = 5;
@@ -19,6 +19,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int twenty = 20;
   int fifty = 50;
   int hundred = 100;
+  int electricityAmount = 0;
 
   void _incrementCounter(int amount) {
     setState(() {
@@ -32,9 +33,9 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  void addTransaction(String textTrans, Color colorTrans) {
+  void addTransaction(String textTrans, Color colorTrans, Icon icon) {
     setState(() {
-      transactions.add(TransactionItem(color: colorTrans, text: textTrans));
+      transactions.insert(0,TransactionItem(color: colorTrans, text: textTrans, icon2: icon,));
     });
   }
 
@@ -52,7 +53,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 GestureDetector(
                   onTap: () {
                     _incrementCounter(five);
-                    addTransaction("+5 Dollars from payee", Colors.lightBlue);
+                    addTransaction("+5 Dollars from payee", Colors.lightBlue, Icon(
+                      Icons.attach_money_rounded,
+                      size: 30,
+                      color: Colors.white,
+                    ));
                   },
                   child: Container(
                     width: 60,
@@ -85,7 +90,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 GestureDetector(
                   onTap: () {
                     _incrementCounter(ten);
-                    addTransaction("+10 Dollars from payee", Colors.lightBlue);
+                    addTransaction("+10 Dollars from payee", Colors.lightBlue, Icon(
+                      Icons.attach_money_rounded,
+                      size: 30,
+                      color: Colors.white,
+                    ));
                   },
                   child: Container(
                     width: 60,
@@ -118,7 +127,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 GestureDetector(
                   onTap: () {
                     _incrementCounter(twenty);
-                    addTransaction("+20 Dollars from payee", Colors.lightBlue);
+                    addTransaction("+20 Dollars from payee", Colors.lightBlue, Icon(
+                      Icons.attach_money_rounded,
+                      size: 30,
+                      color: Colors.white,
+                    ));
                   },
                   child: Container(
                     width: 60,
@@ -151,7 +164,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 GestureDetector(
                   onTap: () {
                     _incrementCounter(fifty);
-                    addTransaction("+50 Dollars from payee", Colors.lightBlue);
+                    addTransaction("+50 Dollars from payee", Colors.lightBlue,Icon(
+                      Icons.attach_money_rounded,
+                      size: 30,
+                      color: Colors.white,
+                    ));
                   },
                   child: Container(
                     width: 60,
@@ -185,7 +202,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     onTap: () {
                       _incrementCounter(hundred);
                       addTransaction(
-                          "+100 Dollars from payee", Colors.lightBlue);
+                          "+100 Dollars from payee", Colors.lightBlue, Icon(
+                      Icons.attach_money_rounded,
+                      size: 30,
+                      color: Colors.white,
+                    ));
                     },
                     child: Container(
                       width: 60,
@@ -230,175 +251,55 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget _buildPopupDialogExpense(BuildContext context, String TitleOfPopup) {
+  Widget _buildPopupDialogExpense(BuildContext context, String TitleOfPopup, Color buttonColor, Icon icon2, String subtitle) {
     return AlertDialog(
       title: Text(TitleOfPopup),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    _decrementCounter(five);
-                  },
-                  child: Container(
-                    width: 60,
-                    height: 60,
-                    decoration: BoxDecoration(
-                      color: Colors.orange,
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          blurRadius: 4,
-                          offset: const Offset(5, 8), // Shadow position
-                        ),
-                      ],
-                    ),
-                    child: Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "$five",
-                          style: GoogleFonts.roboto(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              fontSize: 25),
-                        )),
-                  ),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    _decrementCounter(ten);
-                  },
-                  child: Container(
-                    width: 60,
-                    height: 60,
-                    decoration: BoxDecoration(
-                      color: Colors.pink,
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          blurRadius: 4,
-                          offset: const Offset(5, 8), // Shadow position
-                        ),
-                      ],
-                    ),
-                    child: Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "$ten",
-                          style: GoogleFonts.roboto(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              fontSize: 25),
-                        )),
-                  ),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    _decrementCounter(twenty);
-                  },
-                  child: Container(
-                    width: 60,
-                    height: 60,
-                    decoration: BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          blurRadius: 4,
-                          offset: const Offset(5, 8), // Shadow position
-                        ),
-                      ],
-                    ),
-                    child: Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "$twenty",
-                          style: GoogleFonts.roboto(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              fontSize: 25),
-                        )),
-                  ),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    _decrementCounter(fifty);
-                  },
-                  child: Container(
-                    width: 60,
-                    height: 60,
-                    decoration: BoxDecoration(
-                      color: Colors.purple,
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          blurRadius: 4,
-                          offset: const Offset(5, 8), // Shadow position
-                        ),
-                      ],
-                    ),
-                    child: Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "$fifty",
-                          style: GoogleFonts.roboto(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              fontSize: 25),
-                        )),
-                  ),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                GestureDetector(
-                    onTap: () {
-                      _decrementCounter(hundred);
-                    },
-                    child: Container(
-                      width: 60,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        color: Colors.yellow,
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            blurRadius: 4,
-                            offset: const Offset(5, 8), // Shadow position
-                          ),
-                        ],
+          Row(
+            children: [
+              Container(
+                width: 150,
+                child: TextField(
+                  controller: textController,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white.withOpacity(0.30),
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.lightBlue),
+                          borderRadius: BorderRadius.circular(15)),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(15),
                       ),
-                      child: Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            "$hundred",
-                            style: GoogleFonts.roboto(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                                fontSize: 25),
-                          )),
-                    )),
-              ],
-            ),
+                      hintText: 'Enter amount'),
+                ),
+              ),
+              SizedBox(width: 10,),
+              Container(
+                  height: 50,
+                  width: 100,
+                  decoration: BoxDecoration(
+                      color: buttonColor,
+                      borderRadius: BorderRadius.circular(20)),
+                  child: TextButton(
+                      onPressed: () {
+                        electricityAmount = int.parse(textController.text);
+                        _decrementCounter(electricityAmount);
+                        addTransaction("-$electricityAmount$subtitle", buttonColor, icon2);
+                        textController.clear();
+                      },
+                      child: const Text(
+                        'Add',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ))),
+            ],
           )
         ],
       ),
@@ -419,13 +320,14 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false, 
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Column(children: [
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              "Hi ${widget.name}",
+              "Hi ${widget.name}!",
               style: GoogleFonts.roboto(
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
@@ -581,7 +483,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) =>
-                        _buildPopupDialogExpense(context, "Electricity bill"),
+                        _buildPopupDialogExpense(context, "Electricity bill", Colors.orange, const Icon(
+                      Icons.emoji_objects_outlined,
+                      size: 30,
+                      color: Colors.white,
+                    ), " from electricity bill"),
                   );
                 },
                 child: Container(
@@ -612,7 +518,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) =>
-                        _buildPopupDialogExpense(context, "Cofee cost"),
+                        _buildPopupDialogExpense(context, "Food cost", Colors.pink, const Icon(
+                      Icons.flatware_outlined,
+                      size: 30,
+                      color: Colors.white,
+                    ), " from food cost"),
                   );
                 },
                 child: Container(
@@ -630,7 +540,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],
                     ),
                     child: const Icon(
-                      Icons.emoji_food_beverage_sharp,
+                      Icons.flatware_outlined,
                       size: 30,
                       color: Colors.white,
                     )),
@@ -643,7 +553,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) =>
-                        _buildPopupDialogExpense(context, "House rent"),
+                        _buildPopupDialogExpense(context, "House rent", Colors.green, const Icon(
+                      Icons.house_rounded,
+                      size: 30,
+                      color: Colors.white,
+                    )," from rent"),
                   );
                 },
                 child: Container(
@@ -674,7 +588,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     showDialog(
                       context: context,
                       builder: (BuildContext context) =>
-                          _buildPopupDialogExpense(context, "Food cost"),
+                          _buildPopupDialogExpense(context, "Custom cost", Colors.purple, const Icon(
+                      Icons.dashboard_customize,
+                      size: 30,
+                      color: Colors.white,
+                    )," from custom cost"),
                     );
                   },
                   child: Container(
@@ -692,7 +610,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ],
                       ),
                       child: const Icon(
-                        Icons.flatware_outlined,
+                        Icons.dashboard_customize,
                         size: 30,
                         color: Colors.white,
                       )))
@@ -707,7 +625,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Container(
                     width: 350,
-                    height: 300,
+                    height: 400,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.black.withOpacity(0.5),
