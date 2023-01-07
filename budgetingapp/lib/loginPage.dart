@@ -1,9 +1,12 @@
-import 'package:budgetingapp/homePage.dart';
 import 'package:flutter/material.dart';
 import 'homePage.dart';
 
+
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _LoginScreenState createState() => _LoginScreenState();
 }
 
