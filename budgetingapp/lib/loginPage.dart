@@ -1,5 +1,6 @@
 import 'package:budgetingapp/homePage.dart';
 import 'package:flutter/material.dart';
+import 'homePage.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -7,7 +8,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  var LoginUserModel;
+  TextEditingController textController = TextEditingController();
+  String nameLogin = "";
 
   @override
   Widget build(BuildContext context) {
@@ -50,10 +52,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   Container(
                     width: constraints.maxWidth * 0.9,
                     child: TextField(
+                      controller: textController,
                       decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white.withOpacity(0.30),
-                          
                           border: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.white),
                               borderRadius: BorderRadius.circular(15)),
@@ -78,12 +80,16 @@ class _LoginScreenState extends State<LoginScreen> {
                           borderRadius: BorderRadius.circular(20)),
                       child: TextButton(
                           onPressed: () {
-                             Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
-                        return MyHomePage();
-                     }));
+                            nameLogin = textController.text;
+                            setState(() {
+                              Navigator.push(context, MaterialPageRoute(
+                                  builder: (BuildContext context) {
+                                return MyHomePage(name: nameLogin);
+                              }));
+                            });
                           },
                           child: Text(
-                            'Start',
+                            'Name',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: constraints.maxHeight * 0.03,
@@ -92,7 +98,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     height: constraints.maxHeight * 0.15,
                   ),
-                  
                 ]);
           })),
     );

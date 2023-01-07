@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+  final String name;
+  
+  const MyHomePage({super.key, required this.name});
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Widget> transactions = [TransactionItem(), TransactionItem()];
+  final List<Widget> transactions = [];
   int _counter = 0;
   int five = 5;
   int ten = 10;
@@ -23,15 +25,17 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
- void _decrementCounter(int amount) {
+  void _decrementCounter(int amount) {
     setState(() {
       _counter = _counter - amount;
     });
   }
 
-  
-
-
+  void addTransaction(String textTrans, Color colorTrans) {
+    setState(() {
+      transactions.add(TransactionItem(color: colorTrans, text: textTrans));
+    });
+  }
 
   Widget _buildPopupDialog(BuildContext context) {
     return AlertDialog(
@@ -47,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 GestureDetector(
                   onTap: () {
                     _incrementCounter(five);
+                    addTransaction("+5 Dollars from payee", Colors.lightBlue);
                   },
                   child: Container(
                     width: 60,
@@ -79,6 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 GestureDetector(
                   onTap: () {
                     _incrementCounter(ten);
+                    addTransaction("+10 Dollars from payee", Colors.lightBlue);
                   },
                   child: Container(
                     width: 60,
@@ -111,6 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 GestureDetector(
                   onTap: () {
                     _incrementCounter(twenty);
+                    addTransaction("+20 Dollars from payee", Colors.lightBlue);
                   },
                   child: Container(
                     width: 60,
@@ -143,6 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 GestureDetector(
                   onTap: () {
                     _incrementCounter(fifty);
+                    addTransaction("+50 Dollars from payee", Colors.lightBlue);
                   },
                   child: Container(
                     width: 60,
@@ -175,6 +183,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 GestureDetector(
                     onTap: () {
                       _incrementCounter(hundred);
+                      addTransaction(
+                          "+100 Dollars from payee", Colors.lightBlue);
                     },
                     child: Container(
                       width: 60,
@@ -219,8 +229,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-
-Widget _buildPopupDialogExpense(BuildContext context, String TitleOfPopup) {
+  Widget _buildPopupDialogExpense(BuildContext context, String TitleOfPopup) {
     return AlertDialog(
       title: Text(TitleOfPopup),
       content: Column(
@@ -415,7 +424,7 @@ Widget _buildPopupDialogExpense(BuildContext context, String TitleOfPopup) {
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              "Hi Eesha!",
+              "Hi ${widget.name}",
               style: GoogleFonts.roboto(
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
@@ -441,17 +450,18 @@ Widget _buildPopupDialogExpense(BuildContext context, String TitleOfPopup) {
           children: [
             const Spacer(),
             IconButton(
-                icon: const Icon(Icons.account_circle, size: 32, color: Colors.lightBlue,),
+                icon: const Icon(
+                  Icons.account_circle,
+                  size: 32,
+                  color: Colors.lightBlue,
+                ),
                 onPressed: () {}),
             const SizedBox(
               width: 200,
             ),
             IconButton(
-                icon: const Icon(
-                  Icons.bar_chart_outlined,
-                  size: 32,
-                  color: Colors.lightBlue
-                ),
+                icon: const Icon(Icons.bar_chart_outlined,
+                    size: 32, color: Colors.lightBlue),
                 onPressed: () {}),
             const Spacer(),
           ],
@@ -565,124 +575,126 @@ Widget _buildPopupDialogExpense(BuildContext context, String TitleOfPopup) {
               height: 15,
             ),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-               GestureDetector(
-                    onTap: ()  {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) => _buildPopupDialogExpense(context, "Electricity bill"),
-            );
-          },
-           child:
-              Container(
-                  width: 60,
-                  height: 60,
-                  decoration: BoxDecoration(
-                    color: Colors.orange,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        blurRadius: 4,
-                        offset: const Offset(5, 8), // Shadow position
-                      ),
-                    ],
-                  ),
-                  child: const Icon(
-                    Icons.emoji_objects_outlined,
-                    size: 30,
-                    color: Colors.white,
-                  )),),
-              const SizedBox(
-                width: 15,
-              ),
-               GestureDetector(
-                    onTap: ()  {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) => _buildPopupDialogExpense(context, "Cofee cost"),
-            );
-          },
-           child:
-              Container(
-                  width: 60,
-                  height: 60,
-                  decoration: BoxDecoration(
-                    color: Colors.pink,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        blurRadius: 4,
-                        offset: const Offset(5, 8), // Shadow position
-                      ),
-                    ],
-                  ),
-                  child: const Icon(
-                    Icons.emoji_food_beverage_sharp,
-                    size: 30,
-                    color: Colors.white,
-                  )),),
-              const SizedBox(
-                width: 15,
-              ),
-            
-GestureDetector(
-                    onTap: ()  {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) => _buildPopupDialogExpense(context, "House rent"),
-            );
-          },
-              child: Container(
-                  width: 60,
-                  height: 60,
-                  decoration: BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        blurRadius: 4,
-                        offset: const Offset(5, 8), // Shadow position
-                      ),
-                    ],
-                  ),
-                  child: const Icon(
-                    Icons.house_rounded,
-                    size: 30,
-                    color: Colors.white,
-                  )),),
-              const SizedBox(
-                width: 15,
-              ),
-
               GestureDetector(
-                    onTap: ()  {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) => _buildPopupDialogExpense(context, "Food cost"),
-            );
-          },
-              child:
-              Container(
-                  width: 60,
-                  height: 60,
-                  decoration: BoxDecoration(
-                    color: Colors.purple,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        blurRadius: 4,
-                        offset: const Offset(5, 8), // Shadow position
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) =>
+                        _buildPopupDialogExpense(context, "Electricity bill"),
+                  );
+                },
+                child: Container(
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: Colors.orange,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          blurRadius: 4,
+                          offset: const Offset(5, 8), // Shadow position
+                        ),
+                      ],
+                    ),
+                    child: const Icon(
+                      Icons.emoji_objects_outlined,
+                      size: 30,
+                      color: Colors.white,
+                    )),
+              ),
+              const SizedBox(
+                width: 15,
+              ),
+              GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) =>
+                        _buildPopupDialogExpense(context, "Cofee cost"),
+                  );
+                },
+                child: Container(
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: Colors.pink,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          blurRadius: 4,
+                          offset: const Offset(5, 8), // Shadow position
+                        ),
+                      ],
+                    ),
+                    child: const Icon(
+                      Icons.emoji_food_beverage_sharp,
+                      size: 30,
+                      color: Colors.white,
+                    )),
+              ),
+              const SizedBox(
+                width: 15,
+              ),
+              GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) =>
+                        _buildPopupDialogExpense(context, "House rent"),
+                  );
+                },
+                child: Container(
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          blurRadius: 4,
+                          offset: const Offset(5, 8), // Shadow position
+                        ),
+                      ],
+                    ),
+                    child: const Icon(
+                      Icons.house_rounded,
+                      size: 30,
+                      color: Colors.white,
+                    )),
+              ),
+              const SizedBox(
+                width: 15,
+              ),
+              GestureDetector(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) =>
+                          _buildPopupDialogExpense(context, "Food cost"),
+                    );
+                  },
+                  child: Container(
+                      width: 60,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: Colors.purple,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            blurRadius: 4,
+                            offset: const Offset(5, 8), // Shadow position
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  child: const Icon(
-                    Icons.flatware_outlined,
-                    size: 30,
-                    color: Colors.white,
-                  )))
+                      child: const Icon(
+                        Icons.flatware_outlined,
+                        size: 30,
+                        color: Colors.white,
+                      )))
             ]),
             const SizedBox(
               height: 20,
@@ -697,12 +709,12 @@ GestureDetector(
                     height: 300,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                     color: Colors.white,
+                      color: Colors.black.withOpacity(0.5),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey.withOpacity(0.5),
-                          blurRadius: 4,
-                          offset: const Offset(5, 8), // Shadow position
+                          blurRadius: 8,
+                          // Shadow position
                         ),
                       ],
                     ),
@@ -719,7 +731,7 @@ GestureDetector(
                             const Icon(
                               Icons.auto_graph,
                               size: 30,
-                              color: Colors.black,
+                              color: Colors.white,
                             ),
                             const SizedBox(
                               width: 10,
@@ -728,7 +740,7 @@ GestureDetector(
                               "Your Transactions",
                               style: GoogleFonts.roboto(
                                   fontWeight: FontWeight.normal,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                   fontSize: 20),
                             ),
                           ],
@@ -736,21 +748,22 @@ GestureDetector(
                         const SizedBox(
                           height: 10,
                         ),
-                       
-          Expanded(
-                   child:  ListView(
-                    children: [
-                    TransactionItem(),
-                    SizedBox(height: 10,),
-                    TransactionItem(),
-                    SizedBox(height: 10,),
-                    TransactionItem(),
-                    ],),)
-                   
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: transactions.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                  padding: const EdgeInsets.only(
+                                      bottom: 8.0,
+                                      top: 8.0,
+                                      left: 15,
+                                      right: 15),
+                                  child: transactions[index]);
+                            },
+                          ),
+                        ),
                       ],
                     )),
-            
-              
               ],
             ),
             const Spacer()
